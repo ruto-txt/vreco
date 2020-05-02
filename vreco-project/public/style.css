@@ -48,10 +48,12 @@ main h1{
     width: 320px;
     justify-content: space-around;
 }
+
 .child{
     position: relative;
-     width: 100px;
-    height: 80px;
+    background-color: skyblue;
+    width: 320px;
+    height: 40px;
     margin: 3px;
 }
 .child>div{
