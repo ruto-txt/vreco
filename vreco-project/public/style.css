@@ -41,3 +41,28 @@ main{
 main h1{
     text-align: center;
 }
+
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    width: 320px;
+    justify-content: space-around;
+}
+.child{
+    position: relative;
+    /* width: 100px;
+    height: 80px; */
+    margin: 3px;
+}
+.child>div{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.selection{
+    /* background-color: salmon;
+    width: 100px;
+    height: 80px; */
+    margin: 3px;
+}
