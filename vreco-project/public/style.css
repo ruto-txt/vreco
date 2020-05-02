@@ -1,0 +1,43 @@
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    /* width: 768px; */
+    max-width: 768px;
+    padding: 0px 10px;
+    margin: 0px auto;
+    /*background: white;
+    color:black;*/
+}
+/*
+nav{
+    border: 1px solid gray;
+    justify-content: space-around;
+    height: 40px;
+    margin-bottom: 10px;
+}
+
+nav a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0 1px;
+    color: aliceblue;
+    transition: .3s;
+}
+
+nav a:hover {
+    background: #cbdeee;
+    color: black;
+}*/
+
+main{
+    padding: 0px 10px;
+    border: 1px solid gray;
+}
+
+main h1{
+    text-align: center;
+}
