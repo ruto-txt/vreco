@@ -50,8 +50,8 @@ main h1{
 }
 .child{
     position: relative;
-    /* width: 100px;
-    height: 80px; */
+     width: 100px;
+    height: 80px;
     margin: 3px;
 }
 .child>div{
@@ -61,8 +61,8 @@ main h1{
     transform: translate(-50%,-50%);
 }
 .selection{
-    /* background-color: salmon;
+    background-color: salmon;
     width: 100px;
-    height: 80px; */
+    height: 80px;
     margin: 3px;
 }
