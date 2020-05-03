@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+    <head>
+        <title>vreco - 投稿ページ</title>
+        <link rel="stylesheet" href="style.css" type="text/css">
+        <style>
+                        
+            .key{
+                position: relative;
+                width: 100px;
+                height: 20px;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <header>
+            <nav>パンくずリストとか、リンクとか</nav>
+        </header>
+        <main>
+            <h1>VtuberをRECOmmendしたい</h1>
+
+            <form name="regist">
+            <div class="container">
+                <div class="key"><label>名前</label></div>
+                    <div class="value"><input type="text" name="name" required placeholder="(例)月ノ美兎"></div>
+                <div class="key"><label>ふりがな</label></div>
+                    <div class="value"><input type="text" name="furigana" required placeholder="(例)つきのみと"></div>
+                <div class="key"><label>チャンネル</label></div>
+                    <div class="value"><input type="url" name="url" placeholder="https://www.youtube.com/channel/"></div>
+                <div class="key"><label>ハッシュタグ</label></div>
+                    <div class="value"><input type="text" name="hash"></div>
+            </div>
+            <div class="key"><input type="button" name="submit" value="登録"></div>
+            </form>
+
+        </main>
+        <footer>ソーシャルリンクとかその辺のやつかな</footer>
+
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="/__/firebase/7.13.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="/__/firebase/7.13.1/firebase-analytics.js"></script>
+
+<!-- Initialize Firebase -->
+<script src="/__/firebase/init.js"></script>
+
+<script type="text/javascript" src="regist.js"></script>
+ 
+    </body>
+</html>
