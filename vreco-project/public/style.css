@@ -4,8 +4,8 @@ html{
 
 body{
     /* width: 768px; */
-    max-width: 768px;
-    padding: 0px 10px;
+    max-width: 100%;
+    padding: 0px 5px;
     margin: 0px auto;
     /*background: white;
     color:black;*/
@@ -41,4 +41,31 @@ main{
 
 main h1{
     text-align: center;
+}
+
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    width: 320px;
+    justify-content: space-around;
+}
+
+.child{
+    position: relative;
+    background-color: skyblue;
+    width: 320px;
+    height: 40px;
+    margin: 3px;
+}
+.child>div{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.selection{
+    background-color: salmon;
+    width: 100px;
+    height: 80px;
+    margin: 3px;
 }

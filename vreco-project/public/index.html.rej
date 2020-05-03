@@ -1,0 +1,22 @@
+diff a/vreco-project/public/index.html b/vreco-project/public/index.html	(rejected hunks)
+@@ -2,9 +2,19 @@
+ <html>
+     <head>
+         <title>vreco - Vtuberの推しツイートを支援するサイト</title>
++        <link rel="stylesheet" href="style.css" type="text/css">
++        <script type="text/javascript" src="script.js"></script>
+     </head>
+     <body>
+-        <div><p>hello world!</p></div>
++        <header>
++            <nav>パンくずリストとか、リンクとか</nav>
++        </header>
++        <main>
++            <h1>VtuberをRECOmmendしたい</h1>
++            <p>本文</p>
++            <div class="container" id="pannele"></div>
++        </main>
++        <footer>ソーシャルリンクとかその辺のやつかな</footer>
+ 
+ 
+ <!-- The core Firebase JS SDK is always required and must be listed first -->
