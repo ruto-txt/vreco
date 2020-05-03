@@ -7,9 +7,9 @@ function panelInit(){
         child.addEventListener('click',transitionSelType,false);
         child.num=i;
 
-        child.appendChild(document.createElement('div'))
+        child.appendChild(document.createElement('div'));
         child.children[0].textContent = i + '番';
-        // TODO::DBから読み取る文字列を代入してアレする
+        // TODO::文字列を代入してアレする
         // クリックしたら書き換えられるようになんやかんややる(transitionSelTypeで)
 
         panel.appendChild(child);
@@ -17,7 +17,8 @@ function panelInit(){
 }
 
 function transitionSelType(){
-    alert('クリックされました')
+    alert('クリックされました');
+    document.getElementById('Q2ans').textContent = "Q2の答案一覧";
 }
 
 panelInit();
