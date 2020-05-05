@@ -21,4 +21,22 @@ function transitionSelType(){
     document.getElementById('Q2ans').textContent = "Q2の答案一覧";
 }
 
-panelInit();
+
+function inputsInit(questions){
+    var src = questions;
+    var form = document.getElementById('mainform');//追加先のform
+
+    var divEl = document.createElement('div');
+    divEl.className = 'form-group'
+
+    var tmpInputEl = document.createElement('input');
+    tmpInputEl.type = 'radio';
+    tmpInputEl.name = 'mental';
+    tmpInputEl.form='mainform';
+tmpInputEl.value='てすとｗ'
+
+    var tmpLabelEl = document.createElement('label');
+    tmpLabelEl.textContent = 'わろたｗｗ'
+    form.appendChild(tmpInputEl);
+    form.appendChild(tmpLabelEl);
+}
