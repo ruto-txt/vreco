@@ -1,6 +1,3 @@
-
-
-
 function inputsInit(choices,qSentence){
     var ol = document.getElementById('mainform');//追加先のformを取得する
 
@@ -19,7 +16,7 @@ function inputsInit(choices,qSentence){
             liParEl.appendChild(divEl);
             ol.appendChild(liParEl);
 
-
+            let i = 1;
             for (const sub_key in tmp_obj) {//選択肢のループ
                 if (tmp_obj.hasOwnProperty(sub_key)) {
                     const sub_element = tmp_obj[sub_key];
@@ -37,6 +34,11 @@ function inputsInit(choices,qSentence){
 
                     divEl.appendChild(inputEl);
                     divEl.appendChild(inputlb);
+                    if (i%3==0) {
+                        divEl.appendChild(document.createElement('br'));
+                        i=0
+                    };
+                    i++;
                 }
             }
         }
