@@ -49,17 +49,11 @@
                 <ol>
                     <li>
                         <div class="form-group">
-                            <label>Vtuberの名前</label>
-                            <input type="text" class="form-control" name="name" placeholder="（例）キズナアイ">
+                            <label for="name">Vtuberの名前</label>
+                            <input type="text" class="form-control" name="name" id="form_name" placeholder="（例）キズナアイ">
                         </div>
                     </li>
 
-                    <li>
-                        <div class="form-group">
-                            <label>チャンネルURL</label>
-                            <input type="url" class="form-control" name="url" placeholder="（例）example.com">
-                        </div>
-                    </li>
 
                     <!--ラジオボタンを使用して選択させる -->
                     <li>
@@ -154,6 +148,13 @@
                         <label for="sharp">プロレス</label><br>
                         <input type="radio" id="tsundere" name="relation" value="APPLE" onchange="func1()" checked>
                         <label for="tsundere">相棒</label>
+                    </li>
+
+                    <li>
+                        <div class="form-group">
+                            <label>URL（任意）</label>
+                            <input type="url" class="form-control" name="url" placeholder="（例）example.com">
+                        </div>
                     </li>
                 </ol>
             </form>
