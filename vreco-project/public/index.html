@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>vreco - Vtuberの推しツイートを支援するサイト</title>
+        <title>VRECO - Vtuber推しごと支援サイト</title>
 
         <link rel="stylesheet" href="css/bootstrap.css">
         <style>
@@ -163,7 +163,13 @@
 
       <!--フッターは、クラスで指定してCSSへ投げています。-->
       <footer class="blockquote-footer">
-        ソーシャルリンクとかその辺のやつかな<br>
+        <a href="http://twitter.com/share" class="twitter-share-button"
+        data-url="https://vreco-542cc.firebaseapp.com/"
+        data-lang="ja">Tweet</a>
+        <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+        <!--下2行のLINE共有ボタンは、公開後にしか確認できない仕様です。-->
+        <div class="line-it-button" data-lang="ja" data-type="share-a" data-ver="3" data-url="http://vreco-542cc.firebaseapp.com" data-color="default" data-size="small" data-count="false" style="display: none;"></div>
+        <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script><br>
         © All rights reserved by VRECO運営
       </footer>
 
