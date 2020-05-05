@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>vreco - Vtuberの推しツイートを支援するサイト</title>
-        
+
         <link rel="stylesheet" href="css/bootstrap.css">
         <style>
         nav>a:first-letter{
@@ -23,6 +23,7 @@
         <header>
             <nav class="navbar sticky-top navbar-light bg-white ">
                 <a class="navbar-brand" href="#">
+                  <!--ロゴのイメージ挿入とレイアウト設定-->
                     <img  src="src/logo.png" width="20%" height="20%" alt="VRECO-ロゴ">
                 </a>
             </nav>
@@ -30,16 +31,18 @@
 
 
         <main>
-            <div class = "jumbotron jumbotron-fluid">
+            <!--トップの背景を白に指定-->
+            <div class = "jumbotron-fluid">
                 <div class="container">
                     <h1 class = "display-4"><span class="themecoler">V</span>tuberを<span class="themecoler">Reco</span>mmendしたい！</h1>
-                    <!--ユーザーが使いたくなるような冒頭の説明文-->
+                    <!--ユーザーへの説明文。説明文の前後には灰色の線を入れて区切っています。-->
                     <hr class = "my-4">
-                    <p>たった1分、簡単な質問に答えるだけで、あなたの推しへの愛を140文字にツイートできます。<br>
-                    そして、お金以外の方法で推しを支援できます。<br><br>
-                    推しをフォロワーに共有することで、推しへの愛を具体的な支援に変えることができます。<br>
-                    <strong>推しは、推せるときに、推せる方法で、推そう！！</strong>
+                    <strong>推しは、推せるときに、推せる方法で、推そう！！</strong><br><br>
+                    <p>たった1分、簡単な質問に答えるだけで、あなたの推しへの気持ちを140文字にツイートできます。<br>
+                    ツイートは、お金以外の方法での支援のあり方です。<br><br>
+                    推しをフォロワーに共有することで、推しへの気持ちを具体的な支援に変えましょう。<br>
                     </p>
+                    <hr class = "my-4">
                 </div>
             </div>
 
@@ -158,10 +161,11 @@
             <div>最後の質問です。</div>
         </main>
 
-
-
-    <footer>ソーシャルリンクとかその辺のやつかな</footer>
-
+      <!--フッターは、クラスで指定してCSSへ投げています。-->
+      <footer class="blockquote-footer">
+        ソーシャルリンクとかその辺のやつかな<br>
+        © All rights reserved by VRECO運営
+      </footer>
 
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="/__/firebase/7.13.1/firebase-app.js"></script>
