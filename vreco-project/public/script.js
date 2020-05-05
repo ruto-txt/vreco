@@ -30,11 +30,11 @@ function inputsInit(questions,qSentence){
     for (const key in questions) {//設問のループ
         if (questions.hasOwnProperty(key)) {
             const tmp_obj = questions[key];
-            
+
             // 設問ブロックを包むdivを生成
             var divEl = document.createElement('div');
             divEl.className = 'form-group';
-        
+
             var divEl = document.createElement('div');
             //設問の文言をどうにかして仕込む
             //TODO::文言を読み取って何かの要素に追加するメソッド
