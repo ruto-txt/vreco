@@ -128,13 +128,17 @@ function conversionTweetText(anserObj){
 * formsの内容をもとに、httpqueryの内容を上書きします
 */
 function updateTweetbutton(){
-    const anserObj = acquireForm();
-    var tmp = document.getElementById('tweetbutton')
-    const url = anserObj.url?anserObj.url:"http://vreco-542cc.firebaseapp.com"
-    let encodedUrl = encodeURIComponent(url);
-    tmp.href = "https://twitter.com/share?url=" + encodedUrl + "&text=" + encodeURIComponent(anserObj.text);
-
-    document.getElementById('preview').textContent=anserObj.text;
+    if(updateCheck()){
+        const anserObj = acquireForm();
+        var tmp = document.getElementById('tweetbutton')
+        const url = anserObj.url?anserObj.url:"http://vreco-542cc.firebaseapp.com"
+        let encodedUrl = encodeURIComponent(url);
+        tmp.href = "https://twitter.com/share?url=" + encodedUrl + "&text=" + encodeURIComponent(anserObj.text);
+    
+        document.getElementById('preview').textContent=anserObj.text;
+    }else{
+        return
+    }
 }
 
 
@@ -162,10 +166,9 @@ function updateCheck(){
     //ひとつでもfalseがあれば、メソッドを実行しない
     var finalyBool = true;
     inputExists.forEach(bool=>{if(!bool){
-        console.log(bool);
         finalyBool=false;
     }});
-    finalyBool&&updateTweetbutton();
+    return finalyBool;
 }
 
 
@@ -176,4 +179,4 @@ function updateCheck(){
 inputsInit(choices,questionSentence);
 
 //formを操作するたびにtweetのソースを上書きするイベントリスナ追加
-document.forms[0].addEventListener("change",updateCheck)
+document.forms[0].addEventListener("change",updateTweetbutton)
