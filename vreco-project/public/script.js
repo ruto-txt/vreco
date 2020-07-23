@@ -15,7 +15,6 @@ function inputsInit(choices,qSentence){
             var parentDivEl = document.createElement('div');
             
             // TODO:elementにIDを大問名で追加する。後のエラーチェックでクラスを追加するのに使おうと思っている
-            
             parentDivEl.className = 'form-group';
         
             var questionSentenceEl = document.createElement('p');
@@ -32,7 +31,7 @@ function inputsInit(choices,qSentence){
                     let colDiv =document.createElement('div');
                     colDiv.className='col-sm-2';
                     
-                    const sub_element = tmp_obj[sub_key];
+                    const sub_element = tmp_obj[sub_key].label;
                     var inputEl = document.createElement('input');
                     inputEl.type = 'radio';
                     inputEl.id=sub_key;
@@ -42,6 +41,7 @@ function inputsInit(choices,qSentence){
                     var inputlb = document.createElement('label');
                     inputlb.htmlFor = sub_key;
                     inputlb.textContent = sub_element;
+                    inputlb.name = key;
 
                     /* グリッドlayout用のDivに収めてからの格納に変更
                     parentDivEl.appendChild(inputEl);
@@ -86,7 +86,7 @@ function acquireForm(){
 
     let anserArr = [];
     for (let i = 0; i < inputIndex.length; i++) {
-        let exist = false;
+        var exist = false;
         form[inputIndex[i]].forEach(element => {
             if(element.checked){
                 anserArr.push(element.id);
@@ -95,10 +95,8 @@ function acquireForm(){
         });
     }
 
-    //TODO:anserArrをメソッドに投げて、tweetに使う文字列に変換する。
-    //変換後の文字をreturnする
-
-    var anserObj={name:vname,url:url,text:anserArr};
+    var anserObj={name:vname,url:url,keys:anserArr};
+    anserObj.text=conversionTweetText(anserObj)
     return anserObj;
 }
 
@@ -109,11 +107,20 @@ function acquireForm(){
 *　src = [Vの名前、URL、選択されているvalue]
 *　最終的な文面→　……？？？
 */
-function henkan(src){
-    var vname = src[0];
-    var url = src[1]?src[1]:null; //urlが入っていればそのデータを、入ってなければnullを変数に入れる
-    var tmp1;
-    return tmp;
+function conversionTweetText(anserObj){
+    const vname = anserObj.name;
+    const vnameText = vname?"私の推しは" + vname +"です\n":""
+    const url = anserObj.url?anserObj.url:""; //urlが入っていればそのデータを、入ってなければ""を変数に入れる
+    var anserTextArr=[];
+
+    //choicesはquestion.jsで宣言したオブジェクト
+    const choicesKeys = Object.keys(choices);
+    anserObj.keys.forEach((element,index) => {
+        anserTextArr.push(choices[choicesKeys[index]][element].text)
+    });
+    const Twt = vnameText + anserTextArr[0] + anserTextArr[1] + "が" + anserTextArr[2] + "に" + anserTextArr[3] + "するのが魅力です。たまに" + anserTextArr[4] + "要素がある\n\n"+url
+
+    return Twt;
 }
 
 
@@ -166,11 +173,11 @@ function setTweetButton(anserObj){
 function updateTweetbutton(){
     const anserObj = acquireForm();
     var tmp = document.getElementById('tweetbutton')
-    
-    let url = encodeURIComponent("http://vreco-542cc.firebaseapp.com");
-    tmp.href = "https://twitter.com/share?url=" + url + "&text=" + encodeURIComponent(anserObj.name + anserObj.text);
+    const url = anserObj.url?anserObj.url:"http://vreco-542cc.firebaseapp.com"
+    let encodedUrl = encodeURIComponent(url);
+    tmp.href = "https://twitter.com/share?url=" + encodedUrl + "&text=" + encodeURIComponent(anserObj.text);
 
-    document.getElementById('preview').textContent=anserObj.name + anserObj.text + "仮の文面を表示しています";
+    document.getElementById('preview').textContent=anserObj.text;
 }
 
 
