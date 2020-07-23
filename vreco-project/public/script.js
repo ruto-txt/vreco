@@ -37,6 +37,7 @@ function inputsInit(choices,qSentence){
                     inputEl.id=sub_key;
                     inputEl.name = key;//name属性には親要素と同じ内容を書き込む
                     inputEl.value = sub_element;
+                    inputEl.required = true;
 
                     var inputlb = document.createElement('label');
                     inputlb.htmlFor = sub_key;
@@ -109,8 +110,7 @@ function acquireForm(){
 */
 function conversionTweetText(anserObj){
     const vname = anserObj.name;
-    const vnameText = vname?"私の推しは" + vname +"です\n":""
-    const url = anserObj.url?anserObj.url:""; //urlが入っていればそのデータを、入ってなければ""を変数に入れる
+    const vnameText = vname?"私の推しは" + vname +"です。\n":""
     var anserTextArr=[];
 
     //choicesはquestion.jsで宣言したオブジェクト
@@ -118,57 +118,14 @@ function conversionTweetText(anserObj){
     anserObj.keys.forEach((element,index) => {
         anserTextArr.push(choices[choicesKeys[index]][element].text)
     });
-    const Twt = vnameText + anserTextArr[0] + anserTextArr[1] + "が" + anserTextArr[2] + "に" + anserTextArr[3] + "するのが魅力です。たまに" + anserTextArr[4] + "要素がある\n\n"+url
+    const Twt = vnameText + anserTextArr[0] + anserTextArr[1] + anserTextArr[2] + anserTextArr[3] + "するのが魅力です。たまに" + anserTextArr[4] + "要素がある。\n\n"
 
     return Twt;
 }
 
 
-
-
-
 /*
-*　tweetボタンを生成・上書きするメソッド
-*　tweetボタンにぶち込む文面を引数に入れてメソッドを呼び出す
-*　参考url = https://qiita.com/lovesaemi/items/d4f296b6b1d5158d2fea
-// 任意のタイミングで呼べば狙ったとおりのテキストのボタンつくれる
-// 引数増やしていろいろやってもよいですね。
-*
-* anserObj = {name,url,anserArr=[],text,hashtags}
-*/
-function setTweetButton(anserObj){
-    var tw = document.getElementById('tweet-area'); //既存のボタン消す
-    while (tw.firstChild) tw.removeChild(tw.firstChild);
-
-
-    // htmlでスクリプトを読んでるからtwttがエラーなく呼べる
-    // オプションは公式よんで。
-    // createShareButton(url,targetElement,options);
-    twttr.widgets.createShareButton(
-      "vreco-542cc.firebaseapp.com",//tweet本文に入るurlとは別のもの
-      tw,//    document.getElementById('tweet-area')
-      {
-        size: "large", //ボタンはでかく
-        text: anserObj.name + anserObj.text + " サンプルテキスト",//anserObj.text, // 狙ったテキスト
-        hashtags: anserObj.hashtags?anserObj.hashtags:"", // ハッシュタグ
-        url: anserObj.url//anserObj.url // URL
-      }
-    ).then(function(){
-        let btn = document.createElement("Button");
-        btn.type="button";
-        btn.className="btn btn-outline-primary";
-        btn.textContent="再生成";
-        btn.addEventListener('click',setTweetButton(acquireForm()))
-        tw.appendChild(btn);
-    }
-    );
-}
-//参考url http://westplain.sakuraweb.com/translate/twitter/Documentation/Twitter-for-Websites/Tweet-Button/JavaScript-Factory-Function.cgi
-// http://westplain.sakuraweb.com/translate/twitter/Documentation/Twitter-for-Websites/Tweet-Button/Parameter-Reference.cgi
-
-
-/*
-* ラジオボタンの状態が変わるたびに呼び出され、httpqueryの内容を上書きする
+* formsの内容をもとに、httpqueryの内容を上書きします
 */
 function updateTweetbutton(){
     const anserObj = acquireForm();
@@ -181,6 +138,36 @@ function updateTweetbutton(){
 }
 
 
+/**
+ * formsのすべての要素が埋まってるかどうかを確認する
+ */
+function updateCheck(){
+    const form = document.forms[0];
+    const inputIndex = Object.keys(choices);//questions.jsにて定義したオブジェクトからキー名を取得
+    //name属性に使用してるため実用可能
+
+    var inputExists=inputIndex.slice().fill(false);
+
+    for (let i = 0; i < inputIndex.length; i++) {
+        //form要素はhtmlのためイテレータで参照するしかない
+        //choicesのキーを利用してinput要素の塊を仕分け、それぞれの塊についてチェックがあるかどうかを確認する
+        form[inputIndex[i]].forEach(element => {
+            if(element.checked){//「その要素がチェックされているかどうか」しか分からないため、全てについて検証する
+                inputExists[i]=true;
+            }
+        })
+    };
+
+    //それぞれのブロックの検証結果を収めた配列
+    //ひとつでもfalseがあれば、メソッドを実行しない
+    var finalyBool = true;
+    inputExists.forEach(bool=>{if(!bool){
+        console.log(bool);
+        finalyBool=false;
+    }});
+    finalyBool&&updateTweetbutton();
+}
+
 
 /*
 *　読み込み完了時にメソッド点火
@@ -189,4 +176,4 @@ function updateTweetbutton(){
 inputsInit(choices,questionSentence);
 
 //formを操作するたびにtweetのソースを上書きするイベントリスナ追加
-document.forms[0].addEventListener("change",updateTweetbutton)
+document.forms[0].addEventListener("change",updateCheck)
