@@ -15,7 +15,6 @@ function inputsInit(choices,qSentence){
             var parentDivEl = document.createElement('div');
             
             // TODO:elementにIDを大問名で追加する。後のエラーチェックでクラスを追加するのに使おうと思っている
-            
             parentDivEl.className = 'form-group';
         
             var questionSentenceEl = document.createElement('p');
@@ -32,16 +31,18 @@ function inputsInit(choices,qSentence){
                     let colDiv =document.createElement('div');
                     colDiv.className='col-sm-2';
                     
-                    const sub_element = tmp_obj[sub_key];
+                    const sub_element = tmp_obj[sub_key].label;
                     var inputEl = document.createElement('input');
                     inputEl.type = 'radio';
                     inputEl.id=sub_key;
                     inputEl.name = key;//name属性には親要素と同じ内容を書き込む
                     inputEl.value = sub_element;
+                    inputEl.required = true;
 
                     var inputlb = document.createElement('label');
                     inputlb.htmlFor = sub_key;
                     inputlb.textContent = sub_element;
+                    inputlb.name = key;
 
                     /* グリッドlayout用のDivに収めてからの格納に変更
                     parentDivEl.appendChild(inputEl);
@@ -86,7 +87,7 @@ function acquireForm(){
 
     let anserArr = [];
     for (let i = 0; i < inputIndex.length; i++) {
-        let exist = false;
+        var exist = false;
         form[inputIndex[i]].forEach(element => {
             if(element.checked){
                 anserArr.push(element.id);
@@ -95,10 +96,8 @@ function acquireForm(){
         });
     }
 
-    //TODO:anserArrをメソッドに投げて、tweetに使う文字列に変換する。
-    //変換後の文字をreturnする
-
-    var anserObj={name:vname,url:url,text:anserArr};
+    var anserObj={name:vname,url:url,keys:anserArr};
+    anserObj.text=conversionTweetText(anserObj)
     return anserObj;
 }
 
@@ -109,70 +108,68 @@ function acquireForm(){
 *　src = [Vの名前、URL、選択されているvalue]
 *　最終的な文面→　……？？？
 */
-function henkan(src){
-    var vname = src[0];
-    var url = src[1]?src[1]:null; //urlが入っていればそのデータを、入ってなければnullを変数に入れる
-    var tmp1;
-    return tmp;
+function conversionTweetText(anserObj){
+    const vname = anserObj.name;
+    const vnameText = vname?"私の推しは" + vname +"です。\n":""
+    var anserTextArr=[];
+
+    //choicesはquestion.jsで宣言したオブジェクト
+    const choicesKeys = Object.keys(choices);
+    anserObj.keys.forEach((element,index) => {
+        anserTextArr.push(choices[choicesKeys[index]][element].text)
+    });
+    const Twt = vnameText + anserTextArr[0] + anserTextArr[1] + anserTextArr[2] + anserTextArr[3] + "するのが魅力です。たまに" + anserTextArr[4] + "要素がある。\n\n"
+
+    return Twt;
 }
 
 
-
-
-
 /*
-*　tweetボタンを生成・上書きするメソッド
-*　tweetボタンにぶち込む文面を引数に入れてメソッドを呼び出す
-*　参考url = https://qiita.com/lovesaemi/items/d4f296b6b1d5158d2fea
-// 任意のタイミングで呼べば狙ったとおりのテキストのボタンつくれる
-// 引数増やしていろいろやってもよいですね。
-*
-* anserObj = {name,url,anserArr=[],text,hashtags}
-*/
-function setTweetButton(anserObj){
-    var tw = document.getElementById('tweet-area'); //既存のボタン消す
-    while (tw.firstChild) tw.removeChild(tw.firstChild);
-
-
-    // htmlでスクリプトを読んでるからtwttがエラーなく呼べる
-    // オプションは公式よんで。
-    // createShareButton(url,targetElement,options);
-    twttr.widgets.createShareButton(
-      "vreco-542cc.firebaseapp.com",//tweet本文に入るurlとは別のもの
-      tw,//    document.getElementById('tweet-area')
-      {
-        size: "large", //ボタンはでかく
-        text: anserObj.name + anserObj.text + " サンプルテキスト",//anserObj.text, // 狙ったテキスト
-        hashtags: anserObj.hashtags?anserObj.hashtags:"", // ハッシュタグ
-        url: anserObj.url//anserObj.url // URL
-      }
-    ).then(function(){
-        let btn = document.createElement("Button");
-        btn.type="button";
-        btn.className="btn btn-outline-primary";
-        btn.textContent="再生成";
-        btn.addEventListener('click',setTweetButton(acquireForm()))
-        tw.appendChild(btn);
-    }
-    );
-}
-//参考url http://westplain.sakuraweb.com/translate/twitter/Documentation/Twitter-for-Websites/Tweet-Button/JavaScript-Factory-Function.cgi
-// http://westplain.sakuraweb.com/translate/twitter/Documentation/Twitter-for-Websites/Tweet-Button/Parameter-Reference.cgi
-
-
-/*
-* ラジオボタンの状態が変わるたびに呼び出され、httpqueryの内容を上書きする
+* formsの内容をもとに、httpqueryの内容を上書きします
 */
 function updateTweetbutton(){
-    const anserObj = acquireForm();
-    var tmp = document.getElementById('tweetbutton')
+    if(updateCheck()){
+        const anserObj = acquireForm();
+        var tmp = document.getElementById('tweetbutton')
+        const url = anserObj.url?anserObj.url:"http://vreco-542cc.firebaseapp.com"
+        let encodedUrl = encodeURIComponent(url);
+        tmp.href = "https://twitter.com/share?url=" + encodedUrl + "&text=" + encodeURIComponent(anserObj.text);
     
-    let url = encodeURIComponent("http://vreco-542cc.firebaseapp.com");
-    tmp.href = "https://twitter.com/share?url=" + url + "&text=" + encodeURIComponent(anserObj.name + anserObj.text);
-
-    document.getElementById('preview').textContent=anserObj.name + anserObj.text + "仮の文面を表示しています";
+        document.getElementById('preview').textContent=anserObj.text;
+    }else{
+        return
+    }
 }
 
+
+/**
+ * formsのすべての要素が埋まってるかどうかを確認する
+ */
+function updateCheck(){
+    const form = document.forms[0];
+    const inputIndex = Object.keys(choices);//questions.jsにて定義したオブジェクトからキー名を取得
+    //name属性に使用してるため実用可能
+
+    var inputExists=inputIndex.slice().fill(false);
+
+    for (let i = 0; i < inputIndex.length; i++) {
+        //form要素はhtmlのためイテレータで参照するしかない
+        //choicesのキーを利用してinput要素の塊を仕分け、それぞれの塊についてチェックがあるかどうかを確認する
+        form[inputIndex[i]].forEach(element => {
+            if(element.checked){//「その要素がチェックされているかどうか」しか分からないため、全てについて検証する
+                inputExists[i]=true;
+            }
+        })
+    };
+
+    //それぞれのブロックの検証結果を収めた配列
+    //ひとつでもfalseがあれば、メソッドを実行しない
+    var finalyBool = true;
+    inputExists.forEach(bool=>{if(!bool){
+        finalyBool=false;
+    }});
+    return finalyBool;
+}
 
 
 /*

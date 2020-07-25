@@ -6,11 +6,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>VRECO - Vtuber推しごと支援サイト</title>
 
-        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
         <style>
         nav>a:first-letter{
             font-size: 2em;
             color: #dc1d1d;
+        }
+        .dis4small{
+            font-size: 3.0rem;
         }
         .themecoler{
             color: #dc1d1d;
@@ -33,7 +36,7 @@
             <!--トップの背景を白に指定-->
             <div class = "jumbotron-fluid">
                 <div class="container">
-                    <h1 class = "display-4"><span class="themecoler">V</span>tuberを<span class="themecoler">Reco</span>mmendしたい！</h1>
+                    <h1 class = "display-4 dis4small"><span class="themecoler">V</span>tuberを<span class="themecoler">Reco</span>mmendしたい！</h1>
                     <!--ユーザーへの説明文。説明文の前後には灰色の線を入れて区切っています。-->
                     <hr class = "my-4">
                     <strong>推しは、推せるときに、推せる方法で、推そう！！</strong><br><br>
@@ -54,138 +57,39 @@
                         </div>
                     </li>
 
-                    <!--ラジオボタンを使用して選択させる -->
-                    <!-- <li>
-                        <p>Q3一般的な内面の魅力</p>
-                        <input type="radio" id="passion" name="mental" value="APPLE" onchange="func1()" checked>
-                        <label for="passion">情熱的</label>
-                        <input type="radio" id="cool" name="mental" value="BANANA" onchange="func1()">
-                        <label for="cool">クール</label>
-                        <input type="radio" id="shy" name="mental" value="CHERRY" onchange="func1()">
-                        <label for="shy">内気</label><br>
-                        <input type="radio" id="optimist" name="mental" value="APPLE" onchange="func1()" checked>
-                        <label for="optimist">楽天家</label>
-                        <input type="radio" id="friendly" name="mental" value="APPLE" onchange="func1()" checked>
-                        <label for="friendly">優しい</label>
-                        <input type="radio" id="common" name="mental" value="APPLE" onchange="func1()" checked>
-                        <label for="common">常識的</label><br>
-                        <input type="radio" id="positive" name="mental" value="APPLE" onchange="func1()" checked>
-                        <label for="positive">ポジティブ</label>
-                        <input type="radio" id="laugh" name="mental" value="APPLE" onchange="func1()" checked>
-                        <label for="laugh">笑える</label>
-                        <input type="radio" id="intellectual" name="mental" value="APPLE" onchange="func1()" checked>
-                        <label for="intellectual">知的</label><br>
-                    </li>
-                    <li>
-                        <p>Q4界隈的魅力</p>
-                        <input type="radio" id="yangcat" name="mental2" value="APPLE" onchange="func1()" checked>
-                        <label for="yangcat">陽キャ</label>
-                        <input type="radio" id="nerd" name="mental2" value="BANANA" onchange="func1()">
-                        <label for="nerd">陰キャ</label>
-                        <input type="radio" id="sharp" name="mental2" value="CHERRY" onchange="func1()">
-                        <label for="sharp">とんがっている</label><br>
-                        <input type="radio" id="tsundere" name="mental2" value="APPLE" onchange="func1()" checked>
-                        <label for="tsundere">ツンデレ</label>
-                        <input type="radio" id="yandere" name="mental2" value="APPLE" onchange="func1()" checked>
-                        <label for="yandere">ヤンデレ</label>
-                        <input type="radio" id="kuudere" name="mental2" value="APPLE" onchange="func1()" checked>
-                        <label for="kuudere">クーデレ</label><br>
-                        <input type="radio" id="neatness" name="mental2" value="APPLE" onchange="func1()" checked>
-                        <label for="neatness">清楚</label>
-                        <input type="radio" id="neatnesstrue" name="mental2" value="APPLE" onchange="func1()" checked>
-                        <label for="neatnesstrue">清楚(真)</label>
-                        <input type="radio" id="sensitive" name="mental2" value="APPLE" onchange="func1()" checked>
-                        <label for="sensitive">センシティブ</label><br>
-                    </li>
-                    <li>
-                        <p>Q5行動の魅力</p>
-                        <input type="radio" id="yangcat" name="action" value="APPLE" onchange="func1()" checked>
-                        <label for="yangcat">努力家</label>
-                        <input type="radio" id="nerd" name="action" value="BANANA" onchange="func1()">
-                        <label for="nerd">コラボ</label>
-                        <input type="radio" id="sharp" name="action" value="CHERRY" onchange="func1()">
-                        <label for="sharp">自由奔放</label><br>
-                        <input type="radio" id="tsundere" name="action" value="APPLE" onchange="func1()" checked>
-                        <label for="tsundere">清楚</label>
-                        <input type="radio" id="yandere" name="action" value="APPLE" onchange="func1()" checked>
-                        <label for="yandere">清楚(真)</label>
-                        <input type="radio" id="kuudere" name="action" value="APPLE" onchange="func1()" checked>
-                        <label for="kuudere">センシティブ</label><br>
-                        <input type="radio" id="neatness" name="action" value="APPLE" onchange="func1()" checked>
-                        <label for="neatness">常識的</label>
-                        <input type="radio" id="neatnesstrue" name="action" value="APPLE" onchange="func1()" checked>
-                        <label for="neatnesstrue">几帳面</label>
-                        <input type="radio" id="sensitive" name="action" value="APPLE" onchange="func1()" checked>
-                        <label for="sensitive">献身的</label><br>
-                    </li>
-                    <li>
-                        <p>Q6配信の魅力</p>
-                        <input type="radio" id="yangcat" name="delivery" value="APPLE" onchange="func1()" checked>
-                        <label for="yangcat">ゲーム実況</label>
-                        <input type="radio" id="nerd" name="delivery" value="BANANA" onchange="func1()">
-                        <label for="nerd">歌</label>
-                        <input type="radio" id="sharp" name="delivery" value="CHERRY" onchange="func1()">
-                        <label for="sharp">企画</label><br>
-                        <input type="radio" id="tsundere" name="delivery" value="APPLE" onchange="func1()" checked>
-                        <label for="tsundere">コラボ</label>
-                        <input type="radio" id="yandere" name="delivery" value="APPLE" onchange="func1()" checked>
-                        <label for="yandere">ゲリラ</label>
-                        <input type="radio" id="kuudere" name="delivery" value="APPLE" onchange="func1()" checked>
-                        <label for="kuudere">ホラー実況</label><br>
-                        <input type="radio" id="neatness" name="delivery" value="APPLE" onchange="func1()" checked>
-                        <label for="neatness">耐久</label>
-                        <input type="radio" id="neatnesstrue" name="delivery" value="APPLE" onchange="func1()" checked>
-                        <label for="neatnesstrue">寝落ち</label>
-                    </li>
-                    <li>
-                        <p>Q7関係性の魅力</p>
-                        <input type="radio" id="yangcat" name="relation" value="APPLE" onchange="func1()" checked>
-                        <label for="yangcat">てぇてぇ</label>
-                        <input type="radio" id="nerd" name="relation" value="BANANA" onchange="func1()">
-                        <label for="nerd">家族</label>
-                        <input type="radio" id="sharp" name="relation" value="CHERRY" onchange="func1()">
-                        <label for="sharp">プロレス</label><br>
-                        <input type="radio" id="tsundere" name="relation" value="APPLE" onchange="func1()" checked>
-                        <label for="tsundere">相棒</label>
-                    </li> -->
-
                     <li id="url-adrress">
                         <div class="form-group">
-                            <label>URL（任意）</label>
+                            <label>URL</label>
                             <input type="url" class="form-control" name="url" placeholder="（例）example.com">
                         </div>
                     </li>
                 </ol>
             </form>
-            <div class="container" id="tweet-area">
-                <button type="button" class="btn btn-outline-primary" onclick=setTweetButton(acquireForm())>生成</button>
-            </div>
 
             <div class="container" id="tweet-area2">
-                <p>プレビュー<span  style="border: solid 1px darkgray;width: 300px;height: 80px;" id="preview">ここに表示されるかもしれません</span>　
+                <p>プレビュー<span  style="border: solid 3px darkgray;width: 300px;height: 80px;" id="preview">ここに表示されるかもしれません</span>　
+                <p></p>
                 <a id="tweetbutton" href="https://twitter.com/share?url=http%3A%2F%2Fvreco-542cc.firebaseapp.com
                 &text=VRECO%20-%20%E6%8E%A8%E3%81%97%E3%81%94%E3%81%A8%E6%94%AF%E6%8F%B4%E3%82%B5%E3%82%A4%E3%83%88"
                  class="btn btn-primary" target="_blank">tweet</a></p>
                 </div>
             </div>
-            <div>最後の質問です。</div>
         </main>
 
       <!--フッターは、クラスで指定してCSSへ投げています。-->
-      <!-- <footer class="blockquote-footer"-->
+      <footer class="blockquote-footer">
         <!--下2行のLINE共有ボタンは、公開後にしか確認できない仕様です。-->
-        <!-- <div class="line-it-button" data-lang="ja" data-type="share-a" data-ver="3" data-url="http://vreco-542cc.firebaseapp.com" data-color="default" data-size="small" data-count="false" style="display: none;"></div>
-        <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script><br> -->
-        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script><br>
+        <div class="line-it-button" data-lang="ja" data-type="share-a" data-ver="3" data-url="http://vreco-542cc.firebaseapp.com" data-color="default" data-size="small" data-count="false" style="display: none;"></div>
+        <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script><br>
         © All rights reserved by VRECO運営
       </footer>
 
 <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="/__/firebase/7.13.1/firebase-app.js"></script>
+<script src="/__/firebase/7.17.1/firebase-app.js"></script>
 
 <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="/__/firebase/7.13.1/firebase-analytics.js"></script>
+<script src="/__/firebase/7.17.1/firebase-analytics.js"></script>
 
 <!-- Initialize Firebase -->
 <script src="/__/firebase/init.js"></script>
