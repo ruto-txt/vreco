@@ -6,11 +6,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>VRECO - Vtuber推しごと支援サイト</title>
 
-        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
         <style>
         nav>a:first-letter{
             font-size: 2em;
             color: #dc1d1d;
+        }
+        .dis4small{
+            font-size: 3.0rem;
         }
         .themecoler{
             color: #dc1d1d;
@@ -33,7 +36,7 @@
             <!--トップの背景を白に指定-->
             <div class = "jumbotron-fluid">
                 <div class="container">
-                    <h1 class = "display-4"><span class="themecoler">V</span>tuberを<span class="themecoler">Reco</span>mmendしたい！</h1>
+                    <h1 class = "display-4 dis4small"><span class="themecoler">V</span>tuberを<span class="themecoler">Reco</span>mmendしたい！</h1>
                     <!--ユーザーへの説明文。説明文の前後には灰色の線を入れて区切っています。-->
                     <hr class = "my-4">
                     <strong>推しは、推せるときに、推せる方法で、推そう！！</strong><br><br>
@@ -82,11 +85,11 @@
       </footer>
 
 <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="/__/firebase/7.13.1/firebase-app.js"></script>
+<script src="/__/firebase/7.17.1/firebase-app.js"></script>
 
 <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="/__/firebase/7.13.1/firebase-analytics.js"></script>
+<script src="/__/firebase/7.17.1/firebase-analytics.js"></script>
 
 <!-- Initialize Firebase -->
 <script src="/__/firebase/init.js"></script>
