@@ -8,8 +8,8 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**",
-      "js",
-      "css/bootstrap-ignore"
+      "public/css/bootstrap-ignore",
+      "public/js"
     ],
     "rewrites": [
       {
